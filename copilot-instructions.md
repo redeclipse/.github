@@ -7,3 +7,4 @@ The code is written in C++11 and should:
 - Always be performant with some concessions for aesthetics.
 - Bundle loops that only have one conditional or command, so that extra braces and newlines are avoided.
 - Make use of the included headers and libraries, and completely avoid including new dependencies.
+- Not use helper lambdas, and instead use a helper function or inline macro.
