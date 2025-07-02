@@ -1,25 +1,83 @@
-The name of the project is Red Eclipse, it is a free and open source first person shooter game for Windows and Linux that features parkour and other science fiction elements as an arena shooter.
+# Red Eclipse Development Instructions
 
-The codebase was forked in 2018 from Cube 2: Sauerbraten and features an updated rendering pipeline from the Tesseract game engine, with extensive modifications made since.
+You are working on Red Eclipse, a free and open source first-person shooter for Windows and Linux featuring parkour and science fiction elements. The codebase was forked from Cube 2: Sauerbraten in 2018 with an updated Tesseract rendering pipeline.
 
-All code is C++11 compliant, but should preserve the style of the rest of the code, which is C with C++ extensions due to the age of the codebase.
+## Code Generation Rules
 
-Dependencies are managed manually by a human, and are kept as minimal as possible. Instead of introducing new dependencies or external includes, effort should be made to write custom code instead.
+### Language Requirements
+- Generate C++11 compliant code only
+- Preserve legacy C-style with C++ extensions (do not modernize to newer C++ standards)
+- Never suggest adding new dependencies or external libraries
+- Always write custom implementations instead of recommending third-party solutions
 
-Code is kept concise with limited use of newlines only to separate different concepts or sections, and does not use spaces between invokations and parentheses, but should use spaces between math operators. Braces should be placed on a new line unless it contains only one instruction.
+### Naming Conventions (ENFORCE STRICTLY)
+- Classes: `CamelCase` only (e.g., `WeaponSystem`, `PlayerData`)
+- Everything else: lowercase, no underscores (e.g., `playerhealth`, `getposition`, `maxammo`)
+- Keep all names concise but clear
 
-When writing code comments, their use should be minimized as much as possible, and they should be used only to describe a line of thought or reference that the code itself doesn't convey instead of just explaining what the code does.
+### Formatting Rules (APPLY AUTOMATICALLY)
+- Indentation: Always use exactly 4 spaces, never tabs
+- Function calls: No space before parentheses `function(args)`
+- Math operators: Always add spaces `a + b`, `x * y + z`
+- Variable declarations: Group same types `int health, armor, ammo;`
+- Newlines: Use minimally, only between logical sections
+- Single statements: No braces `if(condition) action();`
+- Multi-statements: Braces on new line:
+  ```cpp
+  if(condition)
+  {
+      action1();
+      action2();
+  }
+  ```
+- Single-command loops: Bundle `for(int i = 0; i < n; ++i) process(i);`
 
-CamelCase may only be used for class names. All identifier names should be concise and avoid using underscores. Variables of the same type should be grouped together instead of across new lines.
+### Code Style Requirements
+- Minimize comments - only explain non-obvious logic or design decisions
+- Never explain what code does, only why it does it
+- Prioritize performance over readability when necessary
+- Avoid excessive infrastructure or abstraction layers
 
-All code and scripts must maintain an indent length of 4 spaces and TAB characters should not be used. When editing a section a code that is formatted like a table, structure of the table should be preserved.
+### Forbidden Features (NEVER USE)
+- `auto` keyword - always use explicit types
+- Lambda functions - use helper functions or inline macros instead
+- Private class members - keep data accessible when practical
+- Modern C++ features that conflict with legacy style
 
-All code and scripts should attempt to be extremely performant with only some concessions for visual aesthetics, and excessive infrastructure should be avoided.
+### Performance Guidelines
+- Always optimize for speed first
+- Consider memory allocation patterns
+- Minimize function call overhead where possible
+- Use inline functions for small, frequently called code
 
-When writing loops that only have one conditional or command, they should be bundled so that extra braces and newlines are avoided.
+## File-Specific Rules
 
-Do not use helper lambdas, and instead use a helper function or inline macro. Avoid the use of keywords like auto and private class members.
+### C++ Source Files (.cpp, .h)
+- Follow all formatting rules above
+- Keep header includes minimal
+- Use forward declarations when possible
 
-The scripting language used in "*.cfg" files is CubeScript, but with extensive modifications specifically for Red Eclipse. Care should be taken to check the project's specific implementation before writing scripts.
+### Configuration Files (.cfg)
+- These use Red Eclipse's modified CubeScript
+- Check existing project scripts before writing new ones
+- CubeScript has project-specific extensions beyond standard
 
-When performing code reviews, responses should be made in English, should provide lots of constructive criticism, and enforce the coding guidelines above by also providing suggestions that fix problems with them.
+## Code Review Instructions
+When reviewing code:
+- Enforce all formatting rules strictly
+- Check for performance implications
+- Suggest alternatives that align with project architecture
+- Provide specific fixes for guideline violations
+- Focus on maintainability within the existing codebase style
+- Be constructive and educational - explain the reasoning behind suggestions
+- Avoid confrontational language - focus on the code, not the developer
+- Offer praise for well-written code that follows guidelines
+- Frame criticism as opportunities for improvement rather than failures
+
+## Error Handling
+If asked to use forbidden features or modern C++ patterns:
+- Decline politely
+- Suggest alternative approaches that fit the legacy style
+- Explain why the restriction exists (performance/compatibility)
+
+Remember: This is a performance-critical game engine with a specific legacy style. Consistency with existing code is more important than modern best practices.
