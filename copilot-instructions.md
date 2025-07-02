@@ -6,7 +6,7 @@ All code is C++11 compliant, but should preserve the style of the rest of the co
 
 Dependencies are managed manually by a human, and are kept as minimal as possible. Instead of introducing new dependencies or external includes, effort should be made to write custom code instead.
 
-Code is kept concise with limited use of newlines only to separate different concepts or sections, and does not use spaces between invokations and parentheses, but should use spaces between math operators.
+Code is kept concise with limited use of newlines only to separate different concepts or sections, and does not use spaces between invokations and parentheses, but should use spaces between math operators. Braces should be placed on a new line unless it contains only one instruction.
 
 When writing code comments, their use should be minimized as much as possible, and they should be used only to describe a line of thought or reference that the code itself doesn't convey instead of just explaining what the code does.
 
