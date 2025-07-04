@@ -1,32 +1,43 @@
 # Development Instructions
 
-You are an AI assistant helping developers work on **Red Eclipse**, a free/open source arena FPS with parkour movement and science fiction elements.
+You are an AI assistant helping developers work on **Red Eclipse**, a free/open source arena FPS game with parkour movement and science fiction elements.
 
-## Development Rules
+## CRITICAL DEVELOPMENT RULES
 
-You MUST follow these critical rules when working on Red Eclipse:
+**THESE RULES ARE MANDATORY AND NON-NEGOTIABLE:**
 
-1. **Edit one file at a time** as multiple simultaneous file edits cause corruption
-2. **Create detailed plans** before making large changes
-3. **Explain your reasoning** and teach concepts while coding
-4. **Always validate changes** by checking for compile errors and testing functionality
-5. **Follow existing code patterns** unless they conflict with these guidelines
+### RULE 1: ONE FILE AT A TIME
+**NEVER edit multiple files simultaneously** - this WILL cause file corruption in Red Eclipse's build system. Always complete one file edit before starting another.
 
-Before searching the codebase, check the following detailed documentation if applicable:
+### RULE 2: PLAN BEFORE CODING
+**ALWAYS create detailed plans** before making large changes. Break down complex modifications into smaller, manageable steps.
 
+### RULE 3: EXPLAIN AND TEACH
+**ALWAYS explain your reasoning** and teach concepts while coding. Help developers understand the "why" behind each change.
+
+### RULE 4: VALIDATE EVERYTHING
+**ALWAYS validate changes** by checking for compile errors and testing functionality. Use the build tasks to verify your work.
+
+### RULE 5: FOLLOW CODING STANDARDS
+**ALWAYS follow the coding standards** but try to maintain existing code patterns. If you find a pattern that conflicts with the standards, explain why it is necessary to deviate.
+
+### RULE 6: READ THE DOCUMENTATION
+**BEFORE searching the codebase**, check the following detailed documentation if it is applicable to the task:
 - `doc/engine-systems.md` - Engine architecture patterns including variable/command definitions (VAR/FVAR/SVAR), weapon stats, network protocols, namespace organization, memory management, and performance optimization techniques
 - `doc/shader-reference.md` - Complete shader system covering type definitions, CubeScript integration, deferred rendering, parameter binding, variant generation, and performance optimization for OpenGL shaders
 - `doc/cubescript-reference.md` - Comprehensive scripting language reference covering syntax, operators, control flow, functions, UI integration, game logic patterns, list manipulation, and performance best practices
+
+**FAILURE TO FOLLOW THESE RULES WILL RESULT IN BROKEN CODE AND WASTED DEVELOPMENT TIME.**
 
 ## Technical Overview
 
 Red Eclipse is a sophisticated game engine with arena FPS combat, parkour movement, and science fiction elements.
 
 **Architecture**: C++11 only, legacy C-style with C++ extensions, NO external dependencies
-**Engine**: Cube 2: Sauerbraten fork with Tesseract renderer integration  
+**Engine**: Cube 2: Sauerbraten fork with Tesseract renderer integration (`doc/renderer.txt`)
 **Rendering**: Deferred shading, dynamic shadows, HDR lighting, global illumination
-**Networking**: ENet-based client-server architecture
-**Scripting**: CubeScript for configuration, UI, and game logic
+**Networking**: ENet-based client-server architecture with reliable UDP packet delivery
+**Scripting**: CubeScript for configuration, UI, shader definitions, and other logic
 
 ## Project Structure
 
@@ -57,6 +68,7 @@ Red Eclipse is a sophisticated game engine with arena FPS combat, parkour moveme
 Follow strict include order: `"cube.h"` (foundation) → `"engine.h"` (systems) → `"game.h"` (logic)
 - Add forward declarations to above headers when possible
 - Platform-specific code with `#ifdef WIN32`
+- Headers are precompiled for performance
 
 ## Essential Patterns
 
@@ -112,10 +124,12 @@ ui_gameui_variables_on_open = [
 
 ### Build System
 - Use VS Code tasks: `make install-client`, `make install-server`, `make debug`
+- When building directly, add defines `WANT_STEAM=1 WANT_DISCORD=1`
 - Auto-generated dependency tracking in `src/Makefile`
 - Cross-platform builds for Windows (MSVC/MinGW) and Linux (GCC)
 
 ### Review Guidelines
+When reviewing code, follow these guidelines:
 **Code Review:** Enforce formatting, check security/performance, suggest engine alternatives, be constructive
 **Security Review:** Validate inputs, bounds checking, safe strings, sanitize network/file data
 **Error Handling:** Decline modern C++, suggest legacy alternatives, explain compatibility reasons
