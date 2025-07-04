@@ -1,83 +1,122 @@
-# Red Eclipse Development Instructions
+# Development Instructions
 
-You are working on Red Eclipse, a free and open source first-person shooter for Windows and Linux featuring parkour and science fiction elements. The codebase was forked from Cube 2: Sauerbraten in 2018 with an updated Tesseract rendering pipeline.
+You are an AI assistant helping developers work on **Red Eclipse**, a free/open source arena FPS with parkour movement and science fiction elements.
 
-## Code Generation Rules
+## Development Rules
 
-### Language Requirements
-- Generate C++11 compliant code only
-- Preserve legacy C-style with C++ extensions (do not modernize to newer C++ standards)
-- Never suggest adding new dependencies or external libraries
-- Always write custom implementations instead of recommending third-party solutions
+You MUST follow these critical rules when working on Red Eclipse:
 
-### Naming Conventions (ENFORCE STRICTLY)
-- Classes: `CamelCase` only (e.g., `WeaponSystem`, `PlayerData`)
-- Everything else: lowercase, no underscores (e.g., `playerhealth`, `getposition`, `maxammo`)
-- Keep all names concise but clear
+1. **Edit one file at a time** as multiple simultaneous file edits cause corruption
+2. **Create detailed plans** before making large changes
+3. **Explain your reasoning** and teach concepts while coding
+4. **Always validate changes** by checking for compile errors and testing functionality
+5. **Follow existing code patterns** unless they conflict with these guidelines
 
-### Formatting Rules (APPLY AUTOMATICALLY)
-- Indentation: Always use exactly 4 spaces, never tabs
-- Function calls: No space before parentheses `function(args)`
-- Math operators: Always add spaces `a + b`, `x * y + z`
-- Variable declarations: Group same types `int health, armor, ammo;`
-- Newlines: Use minimally, only between logical sections
-- Single statements: No braces `if(condition) action();`
-- Multi-statements: Braces on new line:
-  ```cpp
-  if(condition)
-  {
-      action1();
-      action2();
-  }
-  ```
-- Single-command loops: Bundle `for(int i = 0; i < n; ++i) process(i);`
+Before searching the codebase, check the following detailed documentation if applicable:
 
-### Code Style Requirements
-- Minimize comments - only explain non-obvious logic or design decisions
-- Never explain what code does, only why it does it
-- Prioritize performance over readability when necessary
-- Avoid excessive infrastructure or abstraction layers
+- `doc/engine-systems.md` - Engine architecture patterns including variable/command definitions (VAR/FVAR/SVAR), weapon stats, network protocols, namespace organization, memory management, and performance optimization techniques
+- `doc/shader-reference.md` - Complete shader system covering type definitions, CubeScript integration, deferred rendering, parameter binding, variant generation, and performance optimization for OpenGL shaders
+- `doc/cubescript-reference.md` - Comprehensive scripting language reference covering syntax, operators, control flow, functions, UI integration, game logic patterns, list manipulation, and performance best practices
 
-### Forbidden Features (NEVER USE)
-- `auto` keyword - always use explicit types
-- Lambda functions - use helper functions or inline macros instead
-- Private class members - keep data accessible when practical
-- Modern C++ features that conflict with legacy style
+## Technical Overview
 
-### Performance Guidelines
-- Always optimize for speed first
-- Consider memory allocation patterns
-- Minimize function call overhead where possible
-- Use inline functions for small, frequently called code
+Red Eclipse is a sophisticated game engine with arena FPS combat, parkour movement, and science fiction elements.
 
-## File-Specific Rules
+**Architecture**: C++11 only, legacy C-style with C++ extensions, NO external dependencies
+**Engine**: Cube 2: Sauerbraten fork with Tesseract renderer integration  
+**Rendering**: Deferred shading, dynamic shadows, HDR lighting, global illumination
+**Networking**: ENet-based client-server architecture
+**Scripting**: CubeScript for configuration, UI, and game logic
 
-### C++ Source Files (.cpp, .h)
-- Follow all formatting rules above
-- Keep header includes minimal
-- Use forward declarations when possible
+## Project Structure
 
-### Configuration Files (.cfg)
-- These use Red Eclipse's modified CubeScript
-- Check existing project scripts before writing new ones
-- CubeScript has project-specific extensions beyond standard
+**Source (`src/`)**: Engine (`engine/`), Game (`game/`), Shared (`shared/`)
+**Config (`config/`)**: System (`*.cfg`), Shaders (`glsl/`), UI (`ui/`), Tools (`tool/`)
+**Data (`data/`)**: Assets - textures, models, sounds, maps, particles
+**Build System**: `Makefile`, VS Code tasks
 
-## Code Review Instructions
-When reviewing code:
-- Enforce all formatting rules strictly
-- Check for performance implications
-- Suggest alternatives that align with project architecture
-- Provide specific fixes for guideline violations
-- Focus on maintainability within the existing codebase style
-- Be constructive and educational - explain the reasoning behind suggestions
-- Avoid confrontational language - focus on the code, not the developer
-- Offer praise for well-written code that follows guidelines
-- Frame criticism as opportunities for improvement rather than failures
+## Coding Standards
 
-## Error Handling
-If asked to use forbidden features or modern C++ patterns:
-- Decline politely
-- Suggest alternative approaches that fit the legacy style
-- Explain why the restriction exists (performance/compatibility)
+### Language Requirements & Style
+- **C++11 Only**: Legacy C-style with C++ extensions, NO external dependencies
+- **Performance Critical**: Optimize for game engine, validate all inputs
+- **No Magic Numbers**: Use engine variables instead of hardcoded values, otherwise use defines
+- **Naming**: Classes use `CamelCase`, everything else uses lowercase (no underscores)
+- **Formatting**: Opening brace on newline, no space after `if`, `for`, `while`, etc.
+- **Single Statements**: Put single children without braces on same line (e.g., `if(this) that();`)
+- **Whitespace**: 4 spaces indentation, no tabs, preserve table formatted data, 200 characters per line
+- **Comments**: Do not remove comments or create new ones if not necessary, use to explain why - not what or how, strictly `//` only
 
-Remember: This is a performance-critical game engine with a specific legacy style. Consistency with existing code is more important than modern best practices.
+### Memory and Data Structures
+- **Containers**: Use `vector<T>`, `string`, `bigstring`, `hashtable<K,V>` (NOT `std::`)
+- **Loops**: Prefer macros `loopi(n)`, `loopv(container)`, `loopirev(n)`
+- **Memory**: Stack allocation preferred, use `copystring()`, `formatstring()` for safety
+- **Memory Management**: Use `new`/`delete` for dynamic memory, prefer stack allocation, use `delete[]` for arrays
+
+### Include Hierarchy
+Follow strict include order: `"cube.h"` (foundation) → `"engine.h"` (systems) → `"game.h"` (logic)
+- Add forward declarations to above headers when possible
+- Platform-specific code with `#ifdef WIN32`
+
+## Essential Patterns
+
+```cpp
+// Variable and command definitions
+VAR/FVAR/SVAR(flags, name, min, def, max)        // Integer/Float/String variables
+VARF/FVARF/SVARF(flags, name, min, def, max, body) // Variables with callbacks
+COMMAND/ICOMMAND(flags, name, args, code)        // Basic/Inline commands
+
+// Common flags: IDF_PERSIST, IDF_READONLY, IDF_CLIENT, IDF_SERVER, IDF_GAMEMOD, IDF_MAP, IDF_HEX
+VARF(IDF_PERSIST, playerhealth, 1, 100, 1000, setplayerhealth(playerhealth));
+
+// Namespace organization
+namespace hud
+{
+    FVAR(IDF_PERSIST, visorfxdelay, 0, 1.0f, FVAR_MAX);
+    VAR(IDF_PERSIST, visorhud, 0, 1, 1);
+}
+
+// Entity/physics patterns
+gameent *d = getclient(clientnum);
+if(d && d->isalive()) physics::move(d, 10, true);
+
+// Network communication - always validate input
+packetbuf p(MAXTRANS, ENET_PACKET_FLAG_RELIABLE);
+putint(p, N_SERVMSG);
+sendstring(text, p);
+sendpacket(ci->clientnum, 1, p.finalize());
+```
+
+## CubeScript Basics
+
+**Syntax:** Variables `$varname`, blocks `[code]`, args `$arg1`, lists space-separated
+**Operators:** Integer `+,-,*,div,mod,=,!=,<,>`, Float `+f,-f,*f,divf,modf,=f,!=f`, Boolean `!,&&,||`, String `=s,!=s,~=s`
+**Control:** `if [condition] [then] [else]`, `loop var count [body]`, `alias name [body]`, `result value`
+
+```cubescript
+// Basic patterns
+health = (+ $health 25)
+if (> $health 100) [ health = 100 ]
+loop i 10 [ echo (concatword "Count: " $i) ]
+
+// UI event handling
+ui_gameui_variables_on_open = [
+    ui_gameui_variables_index = 0
+    ui_gameui_variables_num = -1
+    ui_gameui_variables_page = 0
+    ui_gameui_variables_reset = 1
+]
+```
+
+## Development Workflow
+
+### Build System
+- Use VS Code tasks: `make install-client`, `make install-server`, `make debug`
+- Auto-generated dependency tracking in `src/Makefile`
+- Cross-platform builds for Windows (MSVC/MinGW) and Linux (GCC)
+
+### Review Guidelines
+**Code Review:** Enforce formatting, check security/performance, suggest engine alternatives, be constructive
+**Security Review:** Validate inputs, bounds checking, safe strings, sanitize network/file data
+**Error Handling:** Decline modern C++, suggest legacy alternatives, explain compatibility reasons
+
