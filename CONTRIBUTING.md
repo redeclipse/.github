@@ -31,7 +31,7 @@ If you want to chat or need help and support, you should use our [Discussion Are
 * If you want to modify it at a later point, changes you make will need to be based on our version, otherwise we may not include your updates.
 * You must provide an explicit, legally enforceable license. Do not use "public domain", or "no commercial use" / "no modification allowed" clauses. If you don't, it will be assumed you are happy to use the Red Eclipse general license which best applies to the work.
 
-If you are unsure about how to license your work, Creative Commons provides a handy selection tool for their licenses at https://creativecommons.org/chooser/ and Red Eclipse content is generally licensed "CC by-sa" (Attribution-ShareAlike), unless otherwise specified: http://creativecommons.org/licenses/by-sa/3.0/
+If you are unsure about how to license your work, Creative Commons provides a handy selection tool for their licenses at https://creativecommons.org/chooser/ and Red Eclipse content is generally licensed "CC BY-SA 4.0" (Attribution-ShareAlike), unless otherwise specified: https://creativecommons.org/licenses/by-sa/4.0/
 
 ## Commit Messages
 
