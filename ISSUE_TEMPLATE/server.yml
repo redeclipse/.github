@@ -1,0 +1,67 @@
+name: Server request
+description: Ask for a trusted or statistics server, or for approval of a modified server, on the official master server.
+labels: ["status: support request", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Anyone may run up to three servers on the official master server, as long as they follow the [multiplayer guidelines](https://www.redeclipse.net/docs/gameplay/Multiplayer-Guidelines). Use this form to ask for more than that, for your servers to count towards statistics, or for approval of a modified server. The [server setup guide](https://www.redeclipse.net/docs/server-how-to/Server-Setup) covers getting a server running.
+
+        Please open this request in [redeclipse/master](https://github.com/redeclipse/master/issues/new?template=server.yml).
+  - type: checkboxes
+    id: request
+    attributes:
+      label: Request
+      options:
+        - label: Trusted, to run more than three servers
+        - label: Statistics, so games on my servers count towards player statistics
+        - label: Approval of modified gameplay or a modified server
+  - type: input
+    id: operator
+    attributes:
+      label: Operator
+      description: Who runs the servers, and how we can reach you, such as your Discord name.
+    validations:
+      required: true
+  - type: textarea
+    id: servers
+    attributes:
+      label: Servers
+      description: The name and address of each server, as listed on the master server, with its port if it isn't 28801.
+      placeholder: |
+        My Server - play.example.com
+        My Server 2 - play.example.com:28803
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Where the servers are hosted, such as a city or region.
+    validations:
+      required: true
+  - type: dropdown
+    id: modified
+    attributes:
+      label: Modifications
+      description: Modified servers must say so in their description, and source changes need our approval first.
+      options:
+        - Unmodified
+        - Modified gameplay settings only
+        - Modified source code
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Why you're asking, who the servers are for, and for modified servers, what you changed and where the source can be found.
+    validations:
+      required: true
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: Guidelines
+      options:
+        - label: My servers follow the [multiplayer guidelines](https://www.redeclipse.net/docs/gameplay/Multiplayer-Guidelines), and I understand access can be withdrawn if they don't.
+          required: true
