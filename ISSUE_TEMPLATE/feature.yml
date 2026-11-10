@@ -1,0 +1,57 @@
+name: Feature request
+description: Suggest a new feature, or an improvement to something that already exists.
+labels: ["status: enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please [search the existing issues](https://github.com/search?q=org%3Aredeclipse+is%3Aissue&type=issues) first, in case it has already been suggested. Gameplay ideas should fit the game's [core principles](https://www.redeclipse.net/docs/Core-Principles).
+
+        If you'd like to talk an idea through first, the [ideas and feature requests](https://github.com/redeclipse/base/discussions/categories/ideas-and-feature-requests) discussions are a good place for it.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of Red Eclipse would this change?
+      options:
+        - Gameplay, modes or weapons
+        - User interface or settings
+        - Map editor
+        - Maps, models, textures, sounds or other content
+        - Servers or the master server
+        - Website or documentation
+        - Building, packaging or installing
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What's missing or awkward right now? Who does it affect, and when?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your proposal
+      description: What should change? Be as specific as you can. Sketches, mockups or examples from elsewhere are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Other ways you considered solving it, or ways people work around it today.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Helping out
+      options:
+        - label: I'd like to work on this myself, with a pull request.
+  - type: input
+    id: ai
+    attributes:
+      label: AI assistance
+      description: If an AI tool helped write this request, name the tool and model. See the [contributing guide](https://github.com/redeclipse/.github/blob/master/CONTRIBUTING.md#ai-assisted-contributions).
+      placeholder: None

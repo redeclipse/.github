@@ -1,0 +1,95 @@
+name: Bug report
+description: Something in the game, its content, the website or the tools doesn't work as it should.
+labels: ["status: bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please [search the existing issues](https://github.com/search?q=org%3Aredeclipse+is%3Aissue&type=issues) first, in case it has already been reported.
+
+        For questions and help, use the [discussion area](https://www.redeclipse.net/discuss) or [Discord](https://www.redeclipse.net/discord) instead.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of Red Eclipse is affected?
+      options:
+        - Game or engine
+        - Maps, models, textures, sounds or other content
+        - Servers or the master server
+        - Website or documentation
+        - Building, packaging or installing
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What happened
+      description: Describe the problem. Screenshots or videos help a lot.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      description: The steps that reliably make the problem happen, including the map, mode and mutators if they matter.
+      placeholder: |
+        1. Start a match on ...
+        2. ...
+        3. The problem happens when ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: For game problems, the version shown on the main menu panel, or the `Version:` line at the start of `log.txt`. If you built from source, the commit you built from.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Not applicable
+        - Windows
+        - Linux
+        - macOS
+        - Other
+  - type: dropdown
+    id: source
+    attributes:
+      label: Where you got the game
+      options:
+        - Not applicable
+        - Steam
+        - itch.io
+        - Download from the website
+        - AppImage, Flatpak, Snap or a distribution package
+        - Built from source
+        - Other
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: |
+        For game problems, paste the contents of `log.txt` from your home folder. The [FAQ](https://www.redeclipse.net/docs/FAQ#where-do-i-find-screenshots-logs-and-other-user-data) explains where to find it. For crashes, a backtrace helps even more, and the [debugging guide](https://www.redeclipse.net/docs/Debug) shows how to get one.
+      render: text
+  - type: checkboxes
+    id: config
+    attributes:
+      label: Settings
+      options:
+        - label: For game problems, I renamed my `config.cfg` and the problem still happens with the default settings.
+  - type: input
+    id: ai
+    attributes:
+      label: AI assistance
+      description: If an AI tool found this problem or wrote this report, name the tool and model. See the [contributing guide](https://github.com/redeclipse/.github/blob/master/CONTRIBUTING.md#ai-assisted-contributions).
+      placeholder: None

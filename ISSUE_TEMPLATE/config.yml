@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help and support
+    url: https://github.com/redeclipse/base/discussions/categories/help-and-support
+    about: Ask for help with installing, playing, mapping or running a server.
+  - name: Ideas and discussion
+    url: https://github.com/redeclipse/base/discussions/categories/ideas-and-feature-requests
+    about: Talk through an idea with the community before it becomes a request.
+  - name: Discord
+    url: https://www.redeclipse.net/discord
+    about: Chat with players and developers live.
