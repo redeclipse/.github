@@ -14,7 +14,6 @@ body:
       label: Request
       options:
         - label: Trusted, to run more than three servers
-        - label: Statistics, so games on my servers count towards player statistics
         - label: Approval of modified gameplay or a modified server
   - type: input
     id: operator
