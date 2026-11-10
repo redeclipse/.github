@@ -74,6 +74,16 @@ body:
         - AppImage, Flatpak, Snap or a distribution package
         - Built from source
         - Other
+  - type: input
+    id: server
+    attributes:
+      label: Server
+      description: For multiplayer problems, the name or address of the server, or whether it happened in a local game.
+  - type: input
+    id: graphics
+    attributes:
+      label: Graphics
+      description: For rendering or performance problems, your graphics card and driver. The `Video:` line in `log.txt` has them.
   - type: textarea
     id: log
     attributes:
