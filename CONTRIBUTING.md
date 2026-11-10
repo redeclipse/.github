@@ -9,8 +9,7 @@ If you want to chat or need help and support, you should use our [Discussion Are
 ## Content/Idea/Proposal Guidelines
 
 * Create a piece of content, come up with an idea, or decide to propose a change you want included in Red Eclipse.
-* Then, create a discussion for in our [Discussion Area](https://www.redeclipse.net/discuss).
-* Give the community a chance to provide feedback (minimum time should be about 2 weeks).
+* Open a feature request in the repository it concerns, or if you'd like feedback first, start a discussion in our [Discussion Area](https://www.redeclipse.net/discuss).
 * When you feel you have come up with a finished work, idea, or proposal, submit it to the appropriate git module as a pull request.
 * Provide a good description along with a link to your original forum topic.
 * Attach, or provide direct links to, any files you are attempting to have included here.
