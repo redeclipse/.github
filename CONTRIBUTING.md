@@ -53,6 +53,17 @@ The [install guide](https://www.redeclipse.net/docs/Install-Guide) explains how 
 * Leave "Allow edits by maintainers" turned on. We may push follow-up commits to your branch to fix problems or improve it before merging.
 * We'll probably modify your work before including it. If you want to change it later, base your changes on our version, otherwise we may not include your updates.
 
+## Labels
+
+Every repository uses the same labels, in four groups:
+
+* `triage` marks new issues a maintainer hasn't looked at yet.
+* `status:` labels say what kind of issue it is and where it stands, such as `status: bug`, `status: needs information` when we're waiting on the reporter, or `status: awaiting pull request` when it's agreed and ready for someone to work on.
+* `priority:` labels say how soon it matters, from `priority: showstopper` down to `priority: low`.
+* `difficulty:` labels say how much work it is, from `difficulty: easy` to `difficulty: extreme`, with `difficulty: elusive` for problems that are hard to pin down.
+
+Hover over a label on GitHub to see its description. If you're looking for somewhere to start, try the [easy issues](https://github.com/search?q=org%3Aredeclipse+is%3Aissue+is%3Aopen+label%3A%22difficulty%3A+easy%22&type=issues) or those [awaiting a pull request](https://github.com/search?q=org%3Aredeclipse+is%3Aissue+is%3Aopen+label%3A%22status%3A+awaiting+pull+request%22&type=issues).
+
 ## Licensing
 
 * Code, scripts and configuration are covered by the Red Eclipse [license](https://www.redeclipse.net/docs/License), based on the ZLIB license. Contributions to them are accepted under the same terms.
