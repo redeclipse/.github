@@ -50,3 +50,13 @@ engine: a map change clears the hovered entities, where the editor's hover panel
 particles: a fireball's attribute 3 is named style, apart from the particle type in 0
 models: broadleaf trees switch detail at half the size on screen
 ```
+
+## AI-Assisted Contributions
+
+You're welcome to use AI tools to help with code, content, issues or pull requests. For the project's records, we ask that you disclose it:
+
+* Any commit where an AI tool wrote or substantially shaped the changes or the message must end with a `Co-Authored-By:` trailer naming the tool and model, after a blank line. Use the attribution line your tool provides, such as `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. If it doesn't provide one, write the tool and model name yourself.
+* If an AI tool found the problem or wrote the description, say so in the issue or pull request.
+* You're still responsible for what you submit. You should understand it, have tested it, and be able to answer questions about it in review.
+
+Pull requests that don't disclose AI assistance may be closed.

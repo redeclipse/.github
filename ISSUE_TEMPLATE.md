@@ -6,6 +6,7 @@
 - Observation: [what happened?]
 - Expected result: [what did you expect to happen?]
 - How to reproduce: [what steps can be taken to reliably reproduce the issue?]
+- AI assistance: [none, or the tool and model used to find the problem or write this report]
 
 ```
 Insert the contents of your `log.txt` here.
