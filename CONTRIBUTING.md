@@ -33,6 +33,20 @@ If you want to chat or need help and support, you should use our [Discussion Are
 
 If you are unsure about how to license your work, Creative Commons provides a handy selection tool for their licenses at http://creativecommons.org/choose/ and Red Eclipse content is generally licensed "CC by-sa" (Attribution-ShareAlike), unless otherwise specified: http://creativecommons.org/licenses/by-sa/3.0/
 
-### A Note on Commit Messages
+## Commit Messages
 
-As of yet, there are no strict rules for formatting of commit messages. However, it is good practice to keep commit messages clean and simple while providing a relatively clear idea of what the commit entails.
+Each commit message starts with a single summary line in the form `module: description`.
+
+* `module` is the part of the project the commit changes, in lowercase. In the code this is a subsystem or directory, such as `engine`, `game`, `server`, `ui`, `config` or `doc`. In the data repositories it is the map, model or asset set, such as `q009` or `models`.
+* A commit that changes a few separate parts lists them with commas, such as `bloodlust, deli: ...`. A change that spreads across the project uses the broadest module that fits.
+* `description` is lowercase and has no full stop at the end. Prefer saying how things behave after the commit over what was done, so `server: a spectator request for a missing client is rejected before its state is read` rather than `fix crash`.
+* A body is optional. If the summary alone doesn't make the reason clear, a short explanation after a blank line helps.
+* Keep to one problem per commit. If a pull request fixes several unrelated issues, give each one its own commit.
+
+For example:
+
+```
+engine: a map change clears the hovered entities, where the editor's hover panel read the old map's entities and crashed
+particles: a fireball's attribute 3 is named style, apart from the particle type in 0
+models: broadleaf trees switch detail at half the size on screen
+```
