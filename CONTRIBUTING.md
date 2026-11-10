@@ -34,7 +34,14 @@ The [install guide](https://www.redeclipse.net/docs/Install-Guide) explains how 
 
 * Open a feature request in the repository it concerns, or if you'd like feedback first, start a discussion in the [ideas and feature requests](https://github.com/redeclipse/base/discussions/categories/ideas-and-feature-requests) discussions.
 * Gameplay changes should fit the game's [core principles](https://www.redeclipse.net/docs/Core-Principles).
-* Send finished content, such as maps, models, textures or sounds, as a pull request to the matching data repository. If you can't use git, attach the files or links to them in an issue instead.
+* Send finished content, such as maps, models, textures or sounds, as a pull request to the matching data repository. If you can't use git, use the content submission form to send links to the files instead.
+
+### Content Submissions
+
+* A map is a set of files sharing its name: the map itself (`name.mpz`), its configuration (`name.cfg`), a screenshot shown in the map list (`name.png`) and, if bots can play it, its waypoints (`name.wpt`). Start the `.cfg` with a comment crediting its authors, and add a `name.txt` with the credits and license if they differ from the repository's defaults.
+* Other content is credited in the `readme.txt` of the folder it goes in. Add an entry with the file names, the author and the license, following the entries already there.
+* Only include files you made, or files whose license allows them to be used and changed in Red Eclipse, and credit everyone whose work you used, as the [licensing](#licensing) rules below explain.
+* Check new content in game before submitting it. For maps, play each mode the map supports and check `log.txt` for missing textures, models or sounds.
 
 ## Pull Requests
 

@@ -1,0 +1,75 @@
+name: Content submission
+description: Send in a map, model, texture, sound or other content when you can't make a pull request.
+labels: ["status: needs verifying", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you can use git, a pull request to the matching data repository is the quickest way to get content included. The [contributing guide](https://github.com/redeclipse/.github/blob/master/CONTRIBUTING.md#content-submissions) explains which files a submission needs.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Content type
+      options:
+        - Map
+        - Model
+        - Texture
+        - Sound or music
+        - Particle, decal or other effect
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: What the content is called, as it should appear in the game.
+    validations:
+      required: true
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors and credits
+      description: Everyone who made this, and the original authors of anything it's based on or includes.
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: The license for the content. Red Eclipse content is usually [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), and nothing may have restrictions beyond attribution and share-alike.
+      placeholder: CC BY-SA 4.0
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Files
+      description: Attach the files here or link to where they can be downloaded.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What it is and how it should be used. For maps, list the modes it supports. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: tested
+    attributes:
+      label: Testing
+      description: How you checked it in game, and whether `log.txt` showed any errors.
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights
+      options:
+        - label: I made this content, or its license allows it to be used and changed in Red Eclipse, and everyone whose work it uses is credited above.
+          required: true
+  - type: input
+    id: ai
+    attributes:
+      label: AI assistance
+      description: If an AI tool helped make this content or write this submission, name the tool and model. See the [contributing guide](https://github.com/redeclipse/.github/blob/master/CONTRIBUTING.md#ai-assisted-contributions).
+      placeholder: None
